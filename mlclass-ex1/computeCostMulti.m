@@ -14,6 +14,10 @@ J = 0;
 %               You should set J to the cost.
 
 
+M = ((X * theta) - y);
+SM = M .* M;
+
+J = sum(SM) ./ (2*m);
 
 
 

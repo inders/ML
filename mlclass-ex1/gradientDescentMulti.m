@@ -17,6 +17,9 @@ for iter = 1:num_iters
     %       of the cost function (computeCostMulti) and gradient here.
     %
 
+    e = ((X * theta) - y)'; % this is H(theta) - Y [m*1 matrix] transpose and make it 1*m matrix
+
+    theta = theta - ((alpha/m) * (e * X))';  % e is 1*m and X is m*n which produces 1*n matrix, take transpose to make it n*1...and theta is already n*1
 
 
 
