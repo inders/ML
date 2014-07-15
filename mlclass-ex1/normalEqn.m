@@ -12,11 +12,11 @@ theta = zeros(size(X, 2), 1);
 
 % ---------------------- Sample Solution ----------------------
 
-m = length(y); % number of training examples
-fprintf('size of X before adding theta0 1s %f\n', size(X));
-X = [ones(m, 1), X(:,:)]; % Add a column of ones to x
+%m = length(y); % number of training examples
+%fprintf('size of X before adding theta0 1s %f\n', size(X));
+%X = [ones(m, 1), X(:,:)]; % Add a column of ones to x
 
-fprintf('size of X %f\n', size(X));
+%fprintf('size of X %f\n', size(X));
 theta = pinv(X' * X) * X' *y;
 
 % -------------------------------------------------------------

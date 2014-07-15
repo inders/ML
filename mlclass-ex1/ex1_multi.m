@@ -105,7 +105,11 @@ fprintf('\n');
 % Recall that the first column of X is all-ones. Thus, it does
 % not need to be normalized.
 price = 0; % You should change this
-
+data = [1650, 3];
+	printf('size of mu %f, size of sigma\n', size(mu), size(sigma));
+X_nm = (data .- mu) ./ sigma;
+X_nm_theta = [1, X_nm(1,1), X_nm(1,2)];
+price = X_nm_theta * theta;
 
 % ============================================================
 
@@ -150,7 +154,7 @@ fprintf('\n');
 % Estimate the price of a 1650 sq-ft, 3 br house
 % ====================== YOUR CODE HERE ======================
 price = 0; % You should change this
-
+price = [1, 1650, 3] * theta;
 
 % ============================================================
 
