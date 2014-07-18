@@ -1,0 +1,58 @@
+function [J, grad] = costFunctionReg(theta, X, y, lambda)
+%COSTFUNCTIONREG Compute cost and gradient for logistic regression with regularization
+%   J = COSTFUNCTIONREG(theta, X, y, lambda) computes the cost of using
+%   theta as the parameter for regularized logistic regression and the
+%   gradient of the cost w.r.t. to the parameters. 
+
+% Initialize some useful values
+m = length(y); % number of training examples
+
+% You need to return the following variables correctly 
+J = 0;
+grad = zeros(size(theta));
+
+%fprintf('size of theta is %f\n', size(theta));
+%fprintf('size of X is %f\n', size(X));
+
+% ====================== YOUR CODE HERE ======================
+% Instructions: Compute the cost of a particular choice of theta.
+%               You should set J to the cost.
+%               Compute the partial derivatives and set grad to the partial
+%               derivatives of the cost w.r.t. each parameter in theta
+
+
+z =  X * theta;
+hypothesis = sigmoid(z);
+
+negY = -1 .* y;
+y1cost =  log(hypothesis);
+
+oneHypothesis = ones(size(hypothesis));
+
+y0cost = log (oneHypothesis .- hypothesis);
+
+cost = negY .* y1cost - ((ones(size(y)) + negY) .* y0cost);
+z =  X * theta;
+hypothesis = sigmoid(z);
+
+negY = -1 .* y;
+y1cost =  log(hypothesis);
+
+oneHypothesis = ones(size(hypothesis));
+
+y0cost = log (oneHypothesis .- hypothesis);
+
+cost = negY .* y1cost - ((ones(size(y)) + negY) .* y0cost);
+
+regPart = ((lambda/(2*m)) * (sum(theta .^ 2)));
+J = ((sum(cost)/m) + regPart);
+
+grad(1,1) = ((hypothesis - y )' * X(:, 1))' / m;
+
+for i = 2 : size(theta, 1)
+	     grad(i,1) = (((hypothesis - y )' * X(:, i))' / m ) + lambda/m * theta(i,1);
+end
+
+% =============================================================
+
+end
