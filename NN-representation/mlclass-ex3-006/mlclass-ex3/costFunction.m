@@ -34,7 +34,7 @@ oneHypothesis = ones(size(hypothesis));
 
 y0cost = log (oneHypothesis .- hypothesis);
 
-cost = negY .* y1cost - ((ones(size(y)) + negY) .* y0cost)
+cost = negY .* y1cost - ((ones(size(y)) + negY) .* y0cost);
 
 J = sum(cost)/m;
 

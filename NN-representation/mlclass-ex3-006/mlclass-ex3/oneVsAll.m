@@ -50,6 +50,20 @@ X = [ones(m, 1) X];
 %
 
 
+for label = 1: num_labels
+
+initial_theta = zeros(n + 1, 1);
+options = optimset('GradObj', 'on', 'MaxIter', 50);
+
+% generate a y vector which has one's where label is present and 0's at others
+[theta] = ...
+         fmincg (@(t)(lrCostFunction(t, X, (y == label), lambda)), ...
+                 initial_theta, options);
+
+all_theta(label, :) = theta'; 
+%theta is column vector, however all_theta wants classifier 'i' theta as a row %vector as it's (label, n+1)
+
+end
 
 
 
