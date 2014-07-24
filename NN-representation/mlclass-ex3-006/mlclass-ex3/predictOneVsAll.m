@@ -31,10 +31,15 @@ X = [ones(m, 1) X];
 %       
 
 
+			   %all_theta is a (K,n+1) i.e. for each label 1..K there is a theta row vector for all 'n' dimensions. X is (m, n+1) matrix.
 
+			   %take transpose of all_theta and it becomes (n+1, m) matrix
 
+%A is a m * k matrix i.e for each training sample 1..m we have 'k' predictions in K columns. We need to get the maximum in each column and assign it to P
 
-
+A = sigmoid(X * all_theta');
+%fprintf('size of A is %f', size(A));
+[value, p] = max(A, [], 2);
 
 % =========================================================================
 
